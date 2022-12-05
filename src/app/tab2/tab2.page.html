@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-capitalize">{{paramName}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <ion-slides pager="true" [options]="">
+      <ion-slide>
+        <img [src]="pokemon.imgSrc" style="height: 250px">
+      </ion-slide>
+    </ion-slides>
+  </div>
+</ion-content>

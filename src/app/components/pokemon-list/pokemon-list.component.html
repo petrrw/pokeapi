@@ -1,0 +1,12 @@
+<ion-list *ngFor="let pokemon of pokemonList">
+  <ion-item (click)="onItemSelected(pokemon)" routerLink='../../detail/{{pokemon.name}}'>
+    <ion-avatar slot="start">
+      <img [src]="pokemon.img">
+    </ion-avatar>
+    <ion-label>
+      {{pokemon.name}}
+    </ion-label>
+  </ion-item>
+</ion-list>
+
+paramName: {{paramName}}
