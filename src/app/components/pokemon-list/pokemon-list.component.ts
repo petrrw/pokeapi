@@ -11,14 +11,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 
 export class PokemonListComponent implements OnInit {
-  public paramName:any
 
-  constructor(private pokemonApi : PokemonApiService, private router: Router, private route: ActivatedRoute) {
-    this.route.params.subscribe(params => {
-      this.paramName = params['name'];
-    });
-   }
-  //@Input() pokemons: Observable<[]> = new Observable<[]>
+  constructor(private pokemonApi : PokemonApiService, private router : Router) { }
   @Input() pokemons : Observable<any[]> = new Observable<[]>
   pokemonList : any[] = []
 
@@ -39,9 +33,18 @@ export class PokemonListComponent implements OnInit {
     })
   }
 
-  onItemSelected(pokemon : any){
-    // this.router.navigateByUrl("detail")
-    // console.log(pokemon.name)
+  addToFavorites(pokemonName: string, event: Event){
+    event.stopPropagation();
+    console.log(pokemonName, "was added to fav")
+  }
+
+  removeFromFavorites(pokemonName: string, event : Event){
+    event.stopPropagation()
+    console.log(pokemonName, "was removed from fav")
+  }
+
+  itemClicked(pokemonName : any){
+     this.router.navigateByUrl("detail/" + pokemonName)
   }
 
 }

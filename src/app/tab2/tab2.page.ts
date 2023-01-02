@@ -15,6 +15,23 @@ export class Tab2Page implements OnInit {
     imgSrc: ""
   }
 
+  public pokemonDetails : {name: string, images: string[], types: [], weight: number, stats: any[]} = {
+    name: "",
+    images: [],
+    types: [],
+    weight: NaN,
+    stats: []
+  }
+
+  slideOptions = {
+    autoplay: {
+      delay: 1000,
+      disableOnIteraction: false
+    }
+  }
+
+
+
   constructor(private pokemonApi : PokemonApiService, private router: Router, private route: ActivatedRoute) {
     this.route.params.subscribe(params => {
       this.paramName = params['name'];
@@ -27,9 +44,13 @@ export class Tab2Page implements OnInit {
       }
     })
 
-    this.pokemonApi.getPokemonImageSrcByName(this.paramName).subscribe({
-      next: (img) => {
-        this.pokemon.imgSrc = img;
+    this.pokemonApi.getAllPokemonDetails(this.paramName).subscribe({
+      next:(details) => {
+        let x = Object.keys(details["sprites"])
+        this.pokemonDetails.images = x.map(spriteKey => details["sprites"][spriteKey]).filter(img => typeof(img) === "string")
+        this.pokemonDetails.types = details.types
+        this.pokemonDetails.weight = details.weight
+        this.pokemonDetails.stats = details.stats
       }
     })
   }
