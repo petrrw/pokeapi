@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PokemonApiService } from '../services/pokemon-api.service';
+import { StorageService } from '../services/storage.service';
 
 
 @Component({
@@ -32,7 +33,7 @@ export class Tab2Page implements OnInit {
 
 
 
-  constructor(private pokemonApi : PokemonApiService, private router: Router, private route: ActivatedRoute) {
+   constructor(private pokemonApi : PokemonApiService, private router: Router, private route: ActivatedRoute) {
     this.route.params.subscribe(params => {
       this.paramName = params['name'];
     });

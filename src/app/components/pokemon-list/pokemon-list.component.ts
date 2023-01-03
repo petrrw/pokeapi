@@ -2,6 +2,7 @@ import { Component, Input, NgModule, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PokemonApiService } from 'src/app/services/pokemon-api.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -12,7 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 export class PokemonListComponent implements OnInit {
 
-  constructor(private pokemonApi : PokemonApiService, private router : Router) { }
+  constructor(private pokemonApi : PokemonApiService, private router : Router, private storageService: StorageService) { }
   @Input() pokemons : Observable<any[]> = new Observable<[]>
   pokemonList : any[] = []
 
@@ -33,14 +34,15 @@ export class PokemonListComponent implements OnInit {
     })
   }
 
-  addToFavorites(pokemonName: string, event: Event){
+  async addToFavorites(pokemonName: string, event: Event){
     event.stopPropagation();
-    console.log(pokemonName, "was added to fav")
+    await this.storageService.AddPokemonToFavorites(pokemonName)
   }
 
-  removeFromFavorites(pokemonName: string, event : Event){
+  async removeFromFavorites(pokemonName: string, event : Event){
     event.stopPropagation()
-    console.log(pokemonName, "was removed from fav")
+    this.storageService.saveData(pokemonName, "removed")
+    await this.storageService.RemovePokemonFromFavorites(pokemonName)
   }
 
   itemClicked(pokemonName : any){
