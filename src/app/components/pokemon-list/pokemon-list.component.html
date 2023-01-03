@@ -1,5 +1,7 @@
+<ion-checkbox></ion-checkbox>
+<ion-label (click)="favoritesOnlyClick()">Favorites only</ion-label>
 <ion-list *ngFor="let pokemon of pokemonList">
-  <ion-item (click)="itemClicked(pokemon.name)">
+  <ion-item *ngIf="showFavoritesOnly ? pokemon.isFavorite : true" (click)="itemClicked(pokemon.name)">
     <ion-avatar slot="start">
       <img [src]="pokemon.img">
     </ion-avatar>

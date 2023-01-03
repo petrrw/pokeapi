@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PokemonApiService } from '../services/pokemon-api.service';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-tab1',
@@ -8,6 +9,7 @@ import { PokemonApiService } from '../services/pokemon-api.service';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
+  public showOnlyFavorites: boolean = false
 
   constructor(private pokemonApi : PokemonApiService) {
     this.pokemons = pokemonApi.getPokemons(10);
