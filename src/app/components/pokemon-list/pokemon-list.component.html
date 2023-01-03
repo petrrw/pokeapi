@@ -8,10 +8,10 @@
     <ion-label>
       {{pokemon.name}}
     </ion-label>
-    <ion-button fill="outline" (click)="addToFavorites(pokemon.name, $event)">
+    <ion-button *ngIf="!pokemon.isFavorite" fill="outline" (click)="addToFavorites(pokemon.name, $event)">
       <ion-icon slot="start" name="star"></ion-icon>
       Add to favorites
     </ion-button>
-    <ion-button color="danger" slot="end" (click)="removeFromFavorites(pokemon.name, $event)">Remove from favorites</ion-button>
+    <ion-button *ngIf="pokemon.isFavorite" color="danger" slot="end" (click)="removeFromFavorites(pokemon.name, $event)">Remove from favorites</ion-button>
   </ion-item>
 </ion-list>

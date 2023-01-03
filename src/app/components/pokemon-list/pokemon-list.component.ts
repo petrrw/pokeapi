@@ -47,6 +47,14 @@ export class PokemonListComponent implements OnInit {
     event.stopPropagation();
     await this.storageService.AddPokemonToFavorites(pokemonName)
 
+    this.pokemonList.forEach(pokemon => {
+
+      from(this.storageService.isPokemonInFavorites(pokemon.name)).subscribe({next:(result) => {
+        pokemon.isFavorite = result
+      }})
+
+    })
+
   }
 
   async removeFromFavorites(pokemonName: string, event : Event){
