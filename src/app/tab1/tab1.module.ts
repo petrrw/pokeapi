@@ -7,15 +7,16 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 import { PokemonListComponent } from '../components/pokemon-list/pokemon-list.component';
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
+import { SearchComponent } from "../components/search/search.component";
 
 @NgModule({
-  imports: [
-    IonicModule,
-    CommonModule,
-    FormsModule,
-    ExploreContainerComponentModule,
-    Tab1PageRoutingModule
-  ],
-  declarations: [Tab1Page, PokemonListComponent]
+    declarations: [Tab1Page, PokemonListComponent, SearchComponent],
+    imports: [
+        IonicModule,
+        CommonModule,
+        FormsModule,
+        ExploreContainerComponentModule,
+        Tab1PageRoutingModule,
+    ]
 })
 export class Tab1PageModule {}

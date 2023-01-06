@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, Observable, Subject } from 'rxjs';
 import { PokemonApiService } from '../services/pokemon-api.service';
 import { of } from 'rxjs';
 
@@ -10,11 +10,19 @@ import { of } from 'rxjs';
 })
 export class Tab1Page {
   public showOnlyFavorites: boolean = false
-
+ 
   constructor(private pokemonApi : PokemonApiService) {
-    this.pokemons = pokemonApi.getPokemons(10);
+    this.pokemons = pokemonApi.getPokemons(50);
     console.log(this.pokemons)
   }
+
+  
   pokemons: Observable<any[]>
+
+  ngOnInit() : void {
+   
+
+    
+  }
 
 }
